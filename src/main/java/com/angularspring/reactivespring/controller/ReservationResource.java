@@ -17,12 +17,19 @@ public class ReservationResource {
 
         //reservationService.getReservation(roomId);
 
-        return Mono.just("{}");
+        return Mono.just("{get works}");
     }
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Mono<String> createReservation(@RequestBody Mono<Reservation> reservation) {
 
-        return Mono.just("{}");
+        return Mono.just("{post works}");
     }
+    @PutMapping (path= "{roomId}", produces= MediaType.APPLICATION_JSON_UTF8_VALUE,
+                consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Mono<String> updatePrice (@PathVariable String roomId,
+                                     @RequestBody Mono<Reservation> reservation){
+        return Mono.just("{put works}");
+    }
+
 }
