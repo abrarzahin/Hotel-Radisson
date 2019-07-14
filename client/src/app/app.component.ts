@@ -35,6 +35,11 @@ export class AppComponent {
         this.currentRoomNumber =Number( roomValues[0]);
         this.currentPrice=Number(roomValues[1]);
       }
+
+      console.log(this.currentCheckInVal);
+      console.log(this.currentCheckOutVal);
+      console.log(this.currentRoomNumber);
+      console.log(this.currentPrice);
       
     });
 
