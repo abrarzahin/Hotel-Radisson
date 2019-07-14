@@ -1,6 +1,8 @@
 package com.angularspring.reactivespring.controller;
 
 import com.angularspring.reactivespring.model.Reservation;
+import com.angularspring.reactivespring.service.ReservationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -12,18 +14,22 @@ public class ReservationResource {
 
     public static final String ROOM_V_1_RESERVATION = "/room/v1/reservation/";
 
-    @GetMapping(path = "{roomId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Mono<String> getReservationById(@PathVariable String roomId) {
+    private  final ReservationService reservationService;
+    @Autowired
+    public ReservationResource(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
-        //reservationService.getReservation(roomId);
+    @GetMapping(path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Mono<Reservation> getReservationById(@PathVariable String id) {
 
-        return Mono.just("{get works}");
+        return reservationService.getReservation(id);
     }
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Mono<String> createReservation(@RequestBody Mono<Reservation> reservation) {
+    public Mono<Reservation> createReservation(@RequestBody Mono<Reservation> reservation) {
 
-        return Mono.just("{post works}");
+        return reservationService.createReservation(reservation);
     }
     @PutMapping (path= "{roomId}", produces= MediaType.APPLICATION_JSON_UTF8_VALUE,
                 consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
