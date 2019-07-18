@@ -63,9 +63,11 @@ export class AppComponent {
 
   createReservation() {
     this.reservationService.createReservation(new ReservationRequest(this.currentRoomNumber,
-    this.currentCheckInVal, this.currentCheckOutVal, this.currentPrice)).subscribe(postResult =>
-      console.log(postResult)
-    );
+    this.currentCheckInVal, this.currentCheckOutVal, this.currentPrice))
+    .subscribe(postResult =>{
+      console.log(postResult);
+      this.getCurrentReservations();
+    });
   }
   
 }
